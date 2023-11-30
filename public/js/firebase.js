@@ -1,0 +1,11 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyAO61RtoXff9FNkZOLBT_RTzHC1huvMb4A",
+    authDomain: "blogging-site-37064.firebaseapp.com",
+    projectId: "blogging-site-37064",
+    storageBucket: "blogging-site-37064.appspot.com",
+    messagingSenderId: "324351220392",
+    appId: "1:324351220392:web:7fc5074877a93143d0009d"
+  };
+
+
+const app = initializeApp(firebaseConfig);
