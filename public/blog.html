@@ -9,18 +9,24 @@
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/editor.css">
     <link rel="stylesheet" href="css/blog.css">
-    <link rel="stylesheet" href="css/navbar.css">
 
-    
 
 </head>
 <body>
+
 
     <nav class="navbar">
         <img src="img/logo.png" class="logo" alt="">
         <ul class="links-container">
             <li class="link-item"><a href="/" class="link">home</a></li>
             <li class="link-item"><a href="/editor" class="link">editor</a></li>
+            <li class="link-item">
+                <div class="search-container">
+                    <input type="text" id="search-box" placeholder="Search...">
+                    <button id="search-button">Search</button>
+                    <div id="autocomplete-dropdown"></div>
+                </div>
+            </li>
         </ul>
     </nav>
     
@@ -42,6 +48,8 @@
 
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/blog.js"></script>
+    <script type="module" src="js/search.js"></script>
+
     
 </body>
 </html>
