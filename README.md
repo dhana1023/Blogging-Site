@@ -1,5 +1,6 @@
 # Blogging Website 
-This project is a mini version of a working blogging website, built using only HTML, CSS, and JS. The application is a Node.js app and uses Firebase as its database. 
+
+This project is a compact version of a fully functional blogging website, constructed exclusively with HTML, CSS, and JS. The application is developed as a Node.js app and employs Firebase as its backend database. It offers a simplified yet effective platform for creating, managing, and viewing blog posts, showcasing the integration of front-end technologies and a server-side JavaScript environment.
 
 ## Features  
 
