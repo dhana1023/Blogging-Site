@@ -1,5 +1,5 @@
 import { db } from './firebase.js';
-import { addDoc, collection } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const blogTitleField = document.querySelector('.title');
 const articleField = document.querySelector('.article');
@@ -63,17 +63,17 @@ const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "
 publishBtn.addEventListener('click', async () => {
     if (articleField.value.length && blogTitleField.value.length) {
         const date = new Date();
-        const letters = 'abcdefghijklmnopqrstuvwxyz';
         const blogTitle = blogTitleField.value.split(" ").join("-");
+
         let id = '';
+        const letters = 'abcdefghijklmnopqrstuvwxyz';
         for (let i = 0; i < 4; i++) {
             id += letters[Math.floor(Math.random() * letters.length)];
         }
-
         const docName = `${blogTitle}-${id}`;
 
         try {
-            await addDoc(collection(db, 'blogs'), {
+            await setDoc(doc(db, 'blogs', docName), {
                 title: blogTitleField.value,
                 article: articleField.value,
                 bannerImage: bannerPath,
