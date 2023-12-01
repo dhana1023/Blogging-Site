@@ -1,16 +1,16 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body{
+body {
     width: 100%;
     position: relative;
     font-family: 'poppins', sans-serif;
 }
 
-::selection{
+::selection {
     background: #1b1b1b;
     color: #fff;
 }
@@ -28,7 +28,6 @@ body{
     padding: 0 5vw;
 }
 
-
 .links-container {
     display: flex;
     list-style: none;
@@ -38,7 +37,7 @@ body{
     margin-left: 10px;
 }
 
-.link{
+.link {
     padding: 10px;
     margin-left: 10px;
     text-decoration: none;
@@ -53,6 +52,7 @@ body{
 .search-container {
     position: relative;
 }
+
 #search-box {
     margin-right: 10px;
 }
@@ -63,7 +63,7 @@ body{
     left: 0;
     width: 100%;
     background-color: #fff;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     display: none;
 }
@@ -90,23 +90,22 @@ body{
     cursor: pointer;
 }
 
-.header{
+.header {
     margin-top: 60px;
     width: 100%;
     height: calc(100vh - 60px);
-    background: url(../img/header.png);
+    background: url(../img/header2.png);
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.content{
+.content {
     text-align: center;
 }
 
-
-.heading{
+.heading {
     color: #fff;
     text-transform: capitalize;
     font-size: 80px;
@@ -114,18 +113,18 @@ body{
     margin-bottom: 80px;
 }
 
-.heading .small{
+.heading .small {
     display: block;
     font-size: 40px;
 }
 
-.heading .no-fill{
+.heading .no-fill {
     font-style: italic;
     color: transparent;
     -webkit-text-stroke: 2px #fff;
 }
 
-.btn{
+.btn {
     padding: 10px 20px;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.7);
@@ -134,7 +133,7 @@ body{
     text-transform: capitalize;
 }
 
-.blogs-section{
+.blogs-section {
     width: 100%;
     padding: 50px 5vw;
     display: grid;
@@ -142,7 +141,7 @@ body{
     grid-gap: 80px;
 }
 
-.blog-image{
+.blog-image {
     width: 100%;
     height: 250px;
     object-fit: cover;
@@ -150,12 +149,12 @@ body{
     margin-bottom: 10px;
 }
 
-.blog-overview{
+.blog-overview {
     margin: 10px 0 20px;
     line-height: 30px;
 }
 
-.btn.dark{
+.btn.dark {
     background: #1b1b1b;
     color: #fff;
 }
