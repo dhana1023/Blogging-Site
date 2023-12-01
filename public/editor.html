@@ -7,10 +7,25 @@
     <title>Blog : Editor</title>
 
     <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/editor.css">
 
 </head>
 <body>
+    <nav class="navbar">
+        <img src="img/logo.png" class="logo" alt="">
+        <ul class="links-container">
+            <li class="link-item"><a href="/" class="link">home</a></li>
+            <li class="link-item"><a href="/editor" class="link">editor</a></li>
+            <li class="link-item">
+                <div class="search-container">
+                    <input type="text" id="search-box" placeholder="Search...">
+                    <button id="search-button">Search</button>
+                    <div id="autocomplete-dropdown"></div>
+                </div>
+            </li>
+        </ul>
+    </nav>
 
     <div class="banner">
         <input type="file" accept="image/*" id="banner-upload" hidden>
@@ -28,11 +43,14 @@
         <label for="image-upload" class="btn grey upload-btn">Upload Image</label>
     </div>
 
+    <section class="blogs-section">
+    </section>
 
     <script type="module" src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
     <script  type="module" src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
 
     <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/search.js"></script>
     <script type="module" src="js/editor.js"></script>
 
 </body>

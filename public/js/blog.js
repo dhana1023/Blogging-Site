@@ -7,7 +7,7 @@ let docRef = doc(db, "blogs", blogId);
 getDoc(docRef)
   .then((doc) => {
     if (doc.exists()) {
-      console.log('Document data:', doc.data());
+      // console.log('Document data:', doc.data());
       setupBlog(doc.data());
     } else {
       console.error('Document does not exist.');
