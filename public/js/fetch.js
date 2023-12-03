@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { collection, getDocs } from "./firebase.js";
 
 const blogSection = document.querySelector('.blogs-section');
 

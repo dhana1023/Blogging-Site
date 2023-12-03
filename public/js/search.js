@@ -1,5 +1,5 @@
 import { db } from './firebase.js';
-import { collection, query, orderBy, startAt, endAt, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { collection, query, orderBy, startAt, endAt, getDocs } from "./firebase.js";
 
 const searchBox = document.getElementById('search-box');
 const searchButton = document.getElementById('search-button');
