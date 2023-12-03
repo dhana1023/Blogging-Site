@@ -88,7 +88,7 @@ publishBtn.addEventListener('click', async () => {
                 location.href = `/${docName}`;
             } else {
                 console.error('User is not authenticated.');
-                alert('User is not authenticated. Please log in to publish a blog.');
+                alert('User is not authenticated. Please Sign In to publish a blog.');
             }
         } catch (error) {
             console.error('Firebase Error:', error);

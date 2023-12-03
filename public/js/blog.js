@@ -1,8 +1,9 @@
-import { db } from './firebase.js';
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+import { db, doc, getDoc } from './firebase.js';
+import { auth } from "./auth.js";
 
 let blogId = decodeURI(location.pathname.split("/").pop());
 let docRef = doc(db, "blogs", blogId);
+let editBtn = document.getElementById('edit-blog-btn');
 
 getDoc(docRef)
   .then((doc) => {
@@ -29,6 +30,21 @@ const setupBlog = (data) => {
     titleTag.innerHTML += blogTitle.innerHTML = data.title;
     publish.innerHTML += data.publishedAt;
     publish.innerHTML += ` -- ${data.author}`;
+
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        if(data.author == auth.currentUser.displayName ){
+          editBtn.style.display = "inline";
+          editBtn.href = `${blogId}/editor`;
+        }else{
+          console.log("User is not the Author")
+          editBtn.style.display = "none";
+        }
+      } else {
+          console.error("User not authenticated.");
+          editBtn.style.display = "none";
+      }
+  });
 
     const article = document.querySelector('.article');
     addArticle(article, data.article);

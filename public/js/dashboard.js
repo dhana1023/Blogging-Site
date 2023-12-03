@@ -56,7 +56,7 @@ const createBlog = (blog) => {
             <div class="blog-buttons">
                 <a href="/${blog.id}" class="read-btn">Read</a>
                 <a href="/${blog.id}/editor" class="edit-btn">Edit</a>
-                <a href="#" data-blog-id="${blog.id}" class="delete-btn">delete</a>
+                <a href="#" data-blog-id="${blog.id}" class="delete-btn">Delete</a>
             </div>
         </div>
     `;
