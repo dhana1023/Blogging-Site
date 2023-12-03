@@ -1,4 +1,5 @@
 import { db } from './firebase.js';
+import { auth } from './auth.js';
 import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const blogTitleField = document.querySelector('.title');
@@ -18,6 +19,12 @@ bannerImage.addEventListener('change', () => {
 uploadInput.addEventListener('change', () => {
     uploadImage(uploadInput, "image");
 });
+
+function generateDocName() {
+    const timestamp = new Date().getTime();
+    const randomString = Math.random().toString(36).substring(2, 8);
+    return `blog-${timestamp}-${randomString}`;
+}
 
 const uploadImage = async (uploadFile, uploadType) => {
     const [file] = uploadFile.files;
@@ -64,23 +71,25 @@ publishBtn.addEventListener('click', async () => {
     if (articleField.value.length && blogTitleField.value.length) {
         const date = new Date();
         const blogTitle = blogTitleField.value.split(" ").join("-");
-
-        let id = '';
-        const letters = 'abcdefghijklmnopqrstuvwxyz';
-        for (let i = 0; i < 4; i++) {
-            id += letters[Math.floor(Math.random() * letters.length)];
-        }
-        const docName = `${blogTitle}-${id}`;
+        const docName = generateDocName();
 
         try {
-            await setDoc(doc(db, 'blogs', docName), {
-                title: blogTitleField.value,
-                article: articleField.value,
-                bannerImage: bannerPath,
-                publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`
-            });
+            const user = auth.currentUser;
 
-            location.href = `/${docName}`;
+            if (user) {
+                await setDoc(doc(db, 'blogs', docName), {
+                    title: blogTitleField.value,
+                    article: articleField.value,
+                    bannerImage: bannerPath,
+                    publishedAt: `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`,
+                    author: user.displayName || "Anonymous"
+                });
+
+                location.href = `/${docName}`;
+            } else {
+                console.error('User is not authenticated.');
+                alert('User is not authenticated. Please log in to publish a blog.');
+            }
         } catch (error) {
             console.error('Firebase Error:', error);
             alert("Failed to publish blog. Please try again.");

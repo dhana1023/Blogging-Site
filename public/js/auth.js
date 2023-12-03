@@ -65,5 +65,5 @@ onAuthStateChanged(auth, (user) => {
  
 });
 
-export { auth };
-export { signOut };
+
+export {auth};
