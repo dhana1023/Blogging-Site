@@ -3,10 +3,8 @@ import { collection, query, orderBy, startAt, endAt, getDocs } from "https://www
 
 const searchBox = document.getElementById('search-box');
 const searchButton = document.getElementById('search-button');
-const blogSection = document.querySelector('.blogs-section');
+const searchSection = document.querySelector('.search-result');
 const dropdownContainer = document.getElementById('autocomplete-dropdown');
-
-let autocompleteData = [];
 
 searchButton.addEventListener('click', searchBlogs);
 
@@ -22,35 +20,36 @@ function searchBlogs() {
             startAt(searchValue),
             endAt(searchValue + '\uf8ff')
         );
-        updateBlogs(q);
+        updateBlogs(searchValue, q);
     }
 }
 
 const fetchBlogs = async () => {
     try {
         const q = query(collection(db, 'blogs'), orderBy('title'));
-        updateBlogs(q);
+        updateBlogs("", q); 
     } catch (error) {
         console.error('Error fetching blogs:', error);
     }
 };
 
-function updateBlogs(q) {
-    autocompleteData = [];
+function updateBlogs(searchValue, q) {
+    searchSection.innerHTML = '';
 
     getDocs(q)
         .then((blogs) => {
-            blogSection.innerHTML = '';
             if (blogs.size === 0) {
                 displayNoResultsMessage();
             } else {
+                const autocompleteData = [];
+
                 blogs.forEach(blog => {
                     const data = blog.data();
                     autocompleteData.push({ title: data.title, id: blog.id });
-                    createBlog(blog);
                 });
 
-                initializeAutocomplete();
+                // Initialize autocomplete functionality with searchValue and autocompleteData
+                initializeAutocomplete(searchValue, autocompleteData);
             }
         })
         .catch(error => {
@@ -60,38 +59,31 @@ function updateBlogs(q) {
 
 function displayNoResultsMessage() {
     const noResultsMessage = document.createElement('div');
-    noResultsMessage.textContent = 'No results found.';
-    blogSection.appendChild(noResultsMessage);
-}
+    noResultsMessage.textContent = 'No specific result found upon your search.';
+    searchSection.appendChild(noResultsMessage);
 
-
-
-function createBlog(blog) {
-    let data = blog.data();
-    const blogCard = document.createElement('div');
-    blogCard.className = 'blog-card';
-    blogCard.innerHTML = `
-        <img src="${data.bannerImage}" class="blog-image" alt="">
-        <h1 class="blog-title">${data.title.substring(0, 100) + '...'}</h1>
-        <p class="blog-overview">${data.article.substring(0, 200) + '...'}</p>
-        <a href="/${blog.id}" class="read-btn">read</a>
-    `;
-
-    blogSection.appendChild(blogCard);
+    setTimeout(() => {
+        noResultsMessage.style.opacity = '0';
+        setTimeout(() => {
+            noResultsMessage.remove();
+        }, 500); 
+    }, 5000);
 }
 
 fetchBlogs();
 
-function initializeAutocomplete() {
+function initializeAutocomplete(searchValue, autocompleteData) {
     if (searchBox.autocomplete) {
         searchBox.removeEventListener('input', handleAutocomplete);
     }
 
-    searchBox.addEventListener('input', handleAutocomplete);
+    searchBox.addEventListener('input', function () {
+        handleAutocomplete(searchValue, autocompleteData);
+    });
     document.addEventListener('click', handleDocumentClick);
 }
 
-function handleAutocomplete() {
+function handleAutocomplete(searchValue, autocompleteData) {
     const searchTerm = searchBox.value.trim().toLowerCase();
 
     if (searchTerm === "") {
@@ -120,10 +112,8 @@ function displayAutocompleteResults(results) {
             dropdownContainer.style.display = 'none';
 
             if (results.length === 1) {
-               
                 window.location.href = `/${result.id}`;
             } else {
-               
                 window.location.href = `/${result.id}`;
             }
         });
@@ -143,5 +133,3 @@ function handleDocumentClick(event) {
         dropdownContainer.style.display = 'block';
     }
 }
-
-

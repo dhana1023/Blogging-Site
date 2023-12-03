@@ -99,12 +99,3 @@ textarea::-webkit-scrollbar-thumb {
     margin-top: 80px;
 }
 
-
-.blogs-section {
-    margin-top: 140%; 
-    padding: 70px 5vw;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 30px;
-    display: none;
-}
