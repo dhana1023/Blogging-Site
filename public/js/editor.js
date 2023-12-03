@@ -1,6 +1,5 @@
-import { db } from './firebase.js';
+import { db, setDoc, doc, getDoc } from './firebase.js';
 import { auth } from './auth.js';
-import { setDoc, doc } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const blogTitleField = document.querySelector('.title');
 const articleField = document.querySelector('.article');
@@ -96,3 +95,30 @@ publishBtn.addEventListener('click', async () => {
         }
     }
 });
+
+const blogID = location.pathname.split("/").filter(Boolean)[0]; 
+
+if (blogID !== "editor") {
+    const docRef = doc(db, "blogs", decodeURI(blogID));
+
+    try {
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+            console.log(docSnap.data());
+            if(docSnap.exists){
+                let data = docSnap.data();
+                bannerPath = data.bannerImage;
+                banner. style.backgroundImage = `url(${bannerPath})`;
+                blogTitleField.value = data.title;
+                articleField. value = data.article;
+            }else{
+                location.replace("/");
+           
+            }
+        } else {
+            console.log("Blog not found");
+        }
+    } catch (error) {
+        console.error("Error fetching blog:", error);
+    }
+}

@@ -24,27 +24,6 @@ const getUserWrittenBlogs = async () => {
     }
 }
 
-const deleteBlog = async (id) => {
-    try {
-        const isConfirmed = confirm("Are you sure you want to delete this blog?");
-        
-        if (!isConfirmed) {
-            return; 
-        }
-        const blogRef = doc(db, "blogs", id);
-        const blogSnapshot = await getDoc(blogRef);
-
-        if (blogSnapshot.exists()) {
-            await deleteDoc(blogRef);
-            alert("Blog deleted successfully!");
-            location.reload();
-        } else {
-            console.error("Blog not found");
-        }
-    } catch (error) {
-        console.error("Error deleting the blog:", error);
-    }
-};
 
 const createBlog = (blog) => { 
     let data = blog.data();
@@ -62,8 +41,42 @@ const createBlog = (blog) => {
     `;
     
     const deleteBtn = document.querySelector(`[data-blog-id="${blog.id}"]`);
-    deleteBtn.addEventListener('click', () => deleteBlog(blog.id));
+    deleteBtn.addEventListener('click', (event) => handleDelete(event, blog.id));
 }
+
+const handleDelete = async (event, blogId) => {
+    event.preventDefault(); 
+    try {
+        const isConfirmed = confirm("Are you sure you want to delete this blog?");
+        
+        if (!isConfirmed) {
+            return; 
+        }
+
+        await deleteBlog(blogId);
+        alert("Blog deleted successfully!");
+        location.reload();
+    } catch (error) {
+        console.error("Error deleting the blog:", error);
+        alert("Error deleting the blog. Please try again.");
+    }
+};
+
+const deleteBlog = async (id) => {
+    try {
+        const blogRef = doc(db, "blogs", id);
+        const blogSnapshot = await getDoc(blogRef);
+
+        if (blogSnapshot.exists()) {
+            await deleteDoc(blogRef);
+        } else {
+            console.error("Blog not found");
+        }
+    } catch (error) {
+        console.error("Error deleting the blog:", error);
+        throw error; 
+    }
+};
 
 
 
