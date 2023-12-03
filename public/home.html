@@ -14,29 +14,32 @@
 
 <body>
 
-    <nav class="navbar">
-        <img src="img/logo.png" class="logo" alt="">
-        <ul class="links-container">
-          <li class="link-item"><a href="/" class="link">home</a></li>
-          <li class="link-item"><a href="/editor" class="link">editor</a></li>
-          <li class="link-item">
-            <div class="search-container">
-              <input type="text" id="search-box" placeholder="Search...">
-              <button id="search-button">Search</button>
-              <div id="autocomplete-dropdown"></div>
-            </div>
-          </li>
-          <li class="link-item" id="signInButton"><button id="signInButtonText">Sign In</button></li>
-        </ul>
-    </nav>
+  <nav class="navbar">
+    <img src="img/logo.png" class="logo" alt="">
+    <ul class="links-container">
+      <li class="link-item"><a href="/" class="link">Home</a></li>
+      <li class="link-item"><a id="editorLink" href="/editor" class="link">Editor</a></li>
+      <li class="link-item">  <a id="dashboardLink" class="link" href="/admin" style="display: none;">Dashboard</a></li>
+
+      <li class="link-item">
+        <div class="search-container">
+          <input type="text" id="search-box" placeholder="Search...">
+          <button id="search-button">Search</button>
+          <div id="autocomplete-dropdown"></div>
+        </div>
+      </li>
+      <li class="link-item" id="signInButton"><button id="signInButtonText">Sign In with Google</button></li>
+    </ul>
+</nav>
     
     <div id="message"></div>
 
     <header class="header">
         <div class="content">
-            <a href="/editor" class="btn">write a blog</a>
+            <a href="/editor" class="btn">Write a Blog</a>
         </div>
     </header>
+  
     <section class="search-result">
     </section>
     <section class="blogs-section">
@@ -49,6 +52,7 @@
     <script type="module" src="js/fetch.js"></script>
     <script type="module" src="js/search.js"></script>
     <script type="module" src="js/auth.js"></script>
+   
 
 </body>
 

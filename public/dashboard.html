@@ -14,31 +14,44 @@
 </head>
 
 <body>
+  <nav class="navbar">
+    <img src="img/logo.png" class="logo" alt="">
+    <ul class="links-container">
+      <li class="link-item"><a href="/" class="link">home</a></li>
+      <li class="link-item"><a id="editorLink" href="/editor" class="link">editor</a></li>
+      <li class="link-item">  <a id="dashboardLink" class="link" href="/admin" style="display: none;">Dashboard</a></li>
 
-    <nav class="navbar">
-        <img src="img/logo.png" class="logo" alt="">
-        <ul class="links-container">
-          <li class="link-item"><a href="/" class="link">home</a></li>
-          <li class="link-item"><a href="/editor" class="link">editor</a></li>
-          <li class="link-item">
-            <div class="search-container">
-              <input type="text" id="search-box" placeholder="Search...">
-              <button id="search-button">Search</button>
-              <div id="autocomplete-dropdown"></div>
-            </div>
-          </li>
-          <li class="link-item" id="signInButton"><button id="signInButtonText">Sign In</button></li>
-        </ul>
-    </nav>
+      <li class="link-item">
+        <div class="search-container">
+          <input type="text" id="search-box" placeholder="Search...">
+          <button id="search-button">Search</button>
+          <div id="autocomplete-dropdown"></div>
+        </div>
+      </li>
+      <li class="link-item" id="signInButton"><button id="signInButtonText">Sign In with Google</button></li>
+    </ul>
+</nav>
     
     <div id="message"></div>
 
-    <h1 class ="heading">your blogs</h1>
+    <h1 class ="heading">Your Blogs</h1>
 
     <section class="search-result">
     </section>
     <section class="blogs-section">
-    </section>
+
+      <!-- <div class="blog-card">
+          <img src="img/header.png" class="blog-image" alt="">
+          <h1 class="blog-title">Lorem ipsum dolor sit amet consectetur.</h1>
+          <p class="blog-overview">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt incidunt fugiat quos porro repellat harum. Adipisci tempora corporis rem cum.</p>
+          <div class="blog-buttons">
+            <a href="/" class="read-btn">Read</a>
+            <a href="/" class="edit-btn">Edit</a>
+            <a href="/" class="delete-btn">Delete</a>
+        </div>
+      </div> -->
+      
+  </section>
 
     <script type="module" src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js"></script>
@@ -46,6 +59,7 @@
     <script type="module" src="js/firebase.js"></script>
     <script type="module" src="js/search.js"></script>
     <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/nav.js"></script>
 
 </body>
 
