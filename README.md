@@ -19,10 +19,10 @@ The blog editor supports the inclusion of various content elements, including he
 -   **Read More Blogs Section:** 
 A designated section is available for users to explore and read additional blogs. This feature enhances the user experience by providing easy access to a collection of blog posts.
 
--   **Authentication and User Dashboard** 
+-   **Authentication and User Dashboard:** 
 Users can sign in using Google authentication to personalize their experience. Added user dashboard functionality, allowing users to manage and track their published blogs.
 
--   **Edit and Delete Functions**
+-   **Edit and Delete Functions:**
 Implemented the ability for users to edit and delete their published blog posts.
 
 ## Installation Guide 
