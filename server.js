@@ -10,44 +10,44 @@ app.use(fileupload());
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(initial_path, "home.html"));
-})
+});
 
 app.get('/editor', (req, res) => {
     res.sendFile(path.join(initial_path, "editor.html"));
-})
-
+});
 
 app.post('/upload', (req, res) => {
     let file = req.files.image;
     let date = new Date();
     let imagename = date.getDate() + date.getTime() + file.name;
-    let path = 'public/uploads/' + imagename;
+    let filePath = 'public/uploads/' + imagename;
 
-    file.mv(path, (err, result) => {
-        if(err){
+    file.mv(filePath, (err, result) => {
+        if (err) {
             throw err;
-        } else{
-            res.json(`uploads/${imagename}`)
+        } else {
+            res.json(`uploads/${imagename}`);
         }
-    })
-})
+    });
+});
 
 app.get("/admin", (req, res) => {
     res.sendFile(path.join(initial_path, "dashboard.html"));
-})
+});
 
-app.get("/:blog", (req,res) => {
-    res.sendFile(path.join(initial_path, "blog.html"));
-})
 
 app.get("/:blog/editor", (req, res) => {
-	res.sendFile(path.join(initial_path, "editor.html"));
-})
+    res.sendFile(path.join(initial_path, "editor.html"));
+});
 
-app.use((req,res)=>{
-    res.json("404");
-})
+app.get("/:blog", (req, res) => {
+    res.sendFile(path.join(initial_path, "blog.html"));
+});
+
+app.use((req, res) => {
+    res.status(404).json({ error: 'Not Found' });
+});
 
 app.listen("3000", () => {
     console.log('listening......');
-})
+});
