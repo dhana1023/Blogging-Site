@@ -19,6 +19,16 @@ const getUserWrittenBlogs = async () => {
         blogsSnapshot.forEach((blog) => {
             createBlog(blog);
         });
+
+        blogSection.addEventListener('click', (event) => {
+            const deleteBtn = event.target.closest('.delete-btn');
+            if (deleteBtn) {
+                const blogId = deleteBtn.dataset.blogId;
+                handleDelete(event, blogId);
+            }
+        });
+
+
     } catch (error) {
         console.error("Error getting blogs:", error);
     }
@@ -45,12 +55,13 @@ const createBlog = (blog) => {
 }
 
 const handleDelete = async (event, blogId) => {
-    event.preventDefault(); 
+    event.preventDefault();
+    event.stopPropagation(); 
+
     try {
         const isConfirmed = confirm("Are you sure you want to delete this blog?");
-        
         if (!isConfirmed) {
-            return; 
+            return;
         }
 
         await deleteBlog(blogId);

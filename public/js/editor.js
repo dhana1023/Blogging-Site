@@ -66,11 +66,30 @@ const addImage = (imagepath, alt) => {
 
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+
 publishBtn.addEventListener('click', async () => {
     if (articleField.value.length && blogTitleField.value.length) {
+
+        if (!blogTitleField.value.trim() || !bannerPath) {
+            alert('Please enter a title and upload a banner image.');
+            return;
+        }
+
         const date = new Date();
-        const blogTitle = blogTitleField.value.split(" ").join("-");
-        const docName = generateDocName();
+        let docName;
+
+        if (blogID === 'editor') { // Use '===' for strict comparison
+            // generating id
+            let letters = 'abcdefghijklmnopqrstuvwxyz';
+            let blogTitle = blogTitleField.value.split(" ").join("-");
+            let id = '';
+            for (let i = 0; i < 4; i++) {
+                id += letters[Math.floor(Math.random() * letters.length)];
+            }
+            docName = `${blogTitle}-${id}`;
+        } else {
+            docName = decodeURI(blogID);
+        }
 
         try {
             const user = auth.currentUser;
@@ -93,8 +112,11 @@ publishBtn.addEventListener('click', async () => {
             console.error('Firebase Error:', error);
             alert("Failed to publish blog. Please try again.");
         }
+    } else {
+        alert('Please enter both a title and article before publishing.');
     }
 });
+
 
 const blogID = location.pathname.split("/").filter(Boolean)[0]; 
 
