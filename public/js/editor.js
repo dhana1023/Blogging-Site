@@ -78,8 +78,7 @@ publishBtn.addEventListener('click', async () => {
         const date = new Date();
         let docName;
 
-        if (blogID === 'editor') { // Use '===' for strict comparison
-            // generating id
+        if (blogID === 'editor') { 
             let letters = 'abcdefghijklmnopqrstuvwxyz';
             let blogTitle = blogTitleField.value.split(" ").join("-");
             let id = '';
