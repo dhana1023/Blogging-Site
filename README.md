@@ -33,7 +33,7 @@ git clone https://github.com/dhana1023/Blogging-Site.git
 ```
 2. Navigate to the project folder.
 ```bash 
-cd blogging-website
+cd blogging-site
 ```
 3. Install dependencies
 ```bash 
