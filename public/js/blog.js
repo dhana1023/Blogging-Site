@@ -35,7 +35,8 @@ const setupBlog = (data) => {
       if (user) {
         if(data.author == auth.currentUser.displayName ){
           editBtn.style.display = "inline";
-          editBtn.href = `${blogId}/editor`;
+          const relativeUrl = `${window.location.pathname.split('/').slice(0, -1).join('/')}/${blogId}/editor`;
+          editBtn.href = relativeUrl;
         }else{
           console.log("User is not the Author")
           editBtn.style.display = "none";
